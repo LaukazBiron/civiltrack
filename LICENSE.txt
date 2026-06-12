@@ -1,4 +1,4 @@
-Copyright (c) 2026 Vazquez Mora Edgar, González Rojas Cristian Uriel, Bañuelos Atonal Omar, Espinoza Virgen Ana Paola
+Copyright (c) 2026 Bañuelos Atonal Omar - Cortes Tapia Ahmed - González Rojas Cristian Uriel - Lopez Momox Limhi Gerson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
