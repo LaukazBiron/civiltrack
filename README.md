@@ -5,7 +5,7 @@
 * **Facultad:** Ciencias de la Computación (FCC)
 * **Materia:** Ingeniería de Software
 * **Catedrática:** Dra. Arlem Aleida Castillo Avila
-* **Periodo de Ejecución:** 15 de Junio de 2026 al 08 de Julio de 2026
+* **Periodo de Ejecución:** 15 de Junio de 2026 al 05 de Julio de 2026
 
 ### 👥 Integrantes del Equipo
 * **Lopez Momox Limhi Gerson** (Matrícula: 202379434) - *Project Manager & Analista*
@@ -49,7 +49,7 @@ Ajustado estrictamente a la ventana crítica académica del **15/06/2026 al 08/0
   * *Fechas:* 27 Junio - 02 Julio, 2026
   * *Entregables:* Panel de administración de proyectos y formularios de captura técnica de incidencias, personal activo, maquinaria e insumos diarios.
 * **Sprint 3: Core II - Evidencia Fotográfica en la Nube y Motor de Exportación Unificado**
-  * *Fechas:* 03 Julio - 08 Julio, 2026
+  * *Fechas:* 03 Julio - 05 Julio, 2026
   * *Entregables:* Integración con Cloud Storage para imágenes y algoritmo automatizado de compilación y descarga de reportes en formatos PDF y Excel (.xlsx).
 
 ---
@@ -70,34 +70,74 @@ Ajustado estrictamente a la ventana crítica académica del **15/06/2026 al 08/0
 * **Día 5:** 0 horas pendientes *(Omar unifica la interfaz con Tailwind y despliega localmente)*.
 * *Análisis de la Curva:* Descenso óptimo y controlado dentro de la ventana del bloque de infraestructura, eliminando deudas técnicas iniciales para el inicio del Sprint 1.
 
-## 💼 5. Caso de Negocio Absoluto (Business Case Vivo)
+## 💼 5. Caso de Negocio Estructurado (Business Case Vivo)
+*Soporte de Justificación Estratégica, Metodológica y Financiera bajo los lineamientos puros de la Ingeniería de Software (Dra. Arlem Aleida Castillo Avila).*[cite: 15]
 
-De acuerdo con los fundamentos de ingeniería de software institucionales, este Caso de Negocio no se concibe como un contrato inmutable, sino como un **artefacto vivo** que se recalibra al cierre de cada Sprint Review para asegurar el alineamiento de valor con el cliente.
+### 5.1 Definición y Propósito Fundamental
+En la ingeniería de software, una excelente idea técnica no garantiza el financiamiento ni el éxito operativo[cite: 15]. El Caso de Negocio de CivilTrack funciona como un documento directivo formal que justifica la asignación de nuestros recursos humanos, tecnológicos y temporales para este desarrollo[cite: 11, 15]. Su propósito central no es detallar la especificación técnica de requerimientos (SRS), sino responder de manera objetiva a la validación estratégica de por qué este sistema debe construirse y cuál es su viabilidad real frente al mercado de la construcción en campo[cite: 13, 15].
 
-### 5.1 Justificación del Problema y Opciones de Solución
-* **Problema Identificado:** El desfase de 48 a 72 horas en la consolidación de reportes diarios debido al uso de papel y la dispersión multimedia en WhatsApp.
+#### 5.1.1 Justificación del Problema y Opciones de Solución
+* **Problema Identificado:** El desfase de 48 a 72 horas en la consolidación de reportes diarios debido al uso de papel y la dispersión multimedia en WhatsApp[cite: 13, 14].
 * **Alternativas Evaluadas:**
-  1. *Adquisición de ERPs Comerciales (SAP/Neodata):* Descartado por altos costos de licenciamiento y excesiva complejidad de módulos contables que no se adaptan al uso rápido "con casco y botas" en el frente de obra.
-  2. *Desarrollo a Medida (CivilTrack PWA):* Opción seleccionada por su enfoque de usabilidad extrema (Mobile-First), nulo costo de licenciamiento de software comercial y adaptabilidad inmediata a los requerimientos del Ing. Uziel Ramírez.
+  * *Adquisición de ERPs Comerciales (SAP/Neodata):* Descartado por altos costos de licenciamiento y excesiva complejidad de módulos contables que no se adaptan al uso rápido "con casco y botas" en el frente de obra[cite: 13, 15].
+  * *Desarrollo a Medida (CivilTrack PWA):* Opción seleccionada por su enfoque de usabilidad extrema (Mobile-First), nulo costo de licenciamiento de software comercial y adaptabilidad inmediata a los requerimientos del Ing. Uziel Ramírez[cite: 13, 15].
 
-### 5.2 Simulación de Viabilidad Financiera y Métrica de Retorno de Inversión (ROI)
+---
 
-Para justificar de forma absoluta la viabilidad ante el sínodo evaluador, se presenta el análisis de flujos y recuperación basado en un despliegue para una constructora mediana estándar con 3 frentes de obra activos:
+### 5.2 Componentes Estructurales del Caso de Negocio
+De acuerdo con los estándares formales de la antología del curso, se desglosan los elementos mínimos obligatorios[cite: 15]:
 
-#### A. Costos de Desarrollo e Infraestructura (Estimados para el MVP)
-* **Capital Humano (Costo de Oportunidad - Equipo BUAP):** 4 Ingenieros de Software durante 4 Sprints (23 días).
-* **Infraestructura Cloud Estándar:** Servidor Node.js (Render/Heroku) + BD PostgreSQL + AWS S3 / Cloud Storage = ~$15 - $25 USD / mes (Fase inicial).
+#### A. Resumen Ejecutivo (Executive Summary)
+CivilTrack es una plataforma digital Mobile-First diseñada para optimizar y automatizar el control operativo en frentes de obra civil de pequeñas y medianas constructoras, eliminando el desorden administrativo de las bitácoras físicas y los canales informales de mensajería[cite: 13, 14]. El proyecto se desarrollará bajo el marco ágil SCRUM en una ventana crítica de 4 Sprints (del 15 de junio al 8 de julio de 2026)[cite: 11, 15]. Con una inversión inicial mínima enfocada en infraestructura Cloud, la solución mitiga el riesgo de pérdidas de información técnica y reduce en un 100% el tiempo de consolidación de reportes diarios[cite: 13, 14], proyectando un Retorno de Inversión (ROI) operativo del 188% y un periodo de recuperación de la inversión (Payback Period) de apenas 1.5 meses tras su despliegue[cite: 15].
 
-#### B. Beneficios Tangibles y Cuantificables (Cálculo del ROI Operativo)
-* **Ahorro de Tiempo Directo:** 4 horas semanales recuperadas por cada Ingeniero Residente (evitando transcripción manual de reportes).
-  * *Cálculo:* 4 horas x 3 residentes = 12 horas de ingeniería optimizadas a la semana.
-* **Reducción de Pérdidas por Conceptos No Cobrados:** Mitigación del 100% en la pérdida de evidencia fotográfica. Ante una aclaración con el cliente supervisor, la disponibilidad inmediata de los metadatos de imágenes evita retrasos en los pagos de estimaciones técnicas (frecuentemente valuadas en miles de pesos).
+#### B. Definición del Problema u Oportunidad
+El control operativo diario en campo de la construcción se enfrenta a un cuello de botella crítico en la fase de captura y centralización de datos[cite: 13]. Actualmente, la dependencia de bitácoras físicas en papel y la dispersión de evidencia fotográfica en canales informales (WhatsApp) generan un retraso promedio de **48 a 72 horas** para consolidar un reporte unificado[cite: 13, 14]. Este desfase cuantitativo provoca:
+* Un exceso de **4 horas semanales de trabajo administrativo muerto** por cada ingeniero residente destinado exclusivamente a ordenar fotos y transcribir datos manuales[cite: 14].
+* Un riesgo latente de pérdida de cobro de conceptos ejecutados debido a la falta de metadatos fiables o extravío de documentos físicos[cite: 13, 15].
 
-#### C. Beneficios Intangibles
-* **Reducción del Estrés Administrativo:** Eliminación de llamadas, correos e interrogatorios nocturnos para averiguar el avance del día.
-* **Trazabilidad Legal:** Almacenamiento seguro, cronológico e inalterable de incidencias en campo ante auditorías o penalizaciones por retraso de obra.
+#### C. Visión Tecnológica y Solución Propuesta
+El alcance del producto de software consiste en el desarrollo de un Producto Mínimo Viable (MVP) estructurado como una Aplicación Web Progresiva (PWA)[cite: 13, 15]. CivilTrack automatizará el proceso de levantamiento de incidencias, personal activo, maquinaria y costos básicos directos en campo, acoplando la captura multimedia instantánea de evidencias[cite: 13]. Las características clave del MVP se liberarán de forma incremental a lo largo de 4 sprints fijos, garantizando una interfaz ultra simplificada apta para condiciones de baja conectividad y alta exposición solar en obra[cite: 11, 13].
 
-### 5.3 Matriz de Mitigación de Riesgos Ágiles
+#### D. Análisis de Alternativas
+Todo proyecto tecnológico tiene más de un camino. Evaluamos tres escenarios objetivos para CivilTrack[cite: 15]:
+1. **Hacer nada (Do nothing / Status Quo):** Mantener el flujo actual en papel y WhatsApp[cite: 13, 14]. Costo: Continuar perdiendo 16 horas de ingeniería al mes por residente y arriesgar penalizaciones contractuales por retrasos en la entrega de estimaciones técnicas a los clientes supervisores[cite: 14, 15].
+2. **Comprar solución comercial (COTS - Commercial Off-The-Shelf):** Adquirir licencias de ERPs constructivos[cite: 15]. Costo: Inviable debido a los altos costos de licenciamiento corporativo y una curva de aprendizaje excesivamente compleja que no se adapta a las necesidades de ingenieros independientes o estudiantes[cite: 13, 15].
+3. **Desarrollar software a medida (In-house / CivilTrack):** Solución seleccionada[cite: 15]. Permite un diseño Mobile-First enfocado exclusivamente en las necesidades del Ing. Uziel Irvinne López Ramírez, con control total de la infraestructura en la nube y nulos costos de intermediarios comerciales[cite: 13, 15].
+
+#### E. Análisis Costo-Beneficio y Viabilidad Financiera
+* **Costos Directos e Indirectos:**
+  * *Horas de desarrollo humano:* 4 Ingenieros de Software (Equipo BUAP) durante 4 Sprints (Costo de oportunidad académico)[cite: 11, 14, 15].
+  * *Infraestructura Cloud:* Base de Datos PostgreSQL, hosting de la API REST (Express) y almacenamiento multimedia (AWS S3 / Cloud Storage) estimado en un buffer operativo de ~$15 a $25 USD mensuales[cite: 13, 14, 15].
+* **Beneficios Tangibles:** Recuperación de las 4 horas semanales por residente (eliminando la transcripción manual)[cite: 14, 15] y digitalización inmediata de reportes en formatos interoperables (PDF/Excel) listos para firmas[cite: 13, 14].
+* **Beneficios Intangibles:** Reducción drástica del estrés administrativo nocturno del supervisor, incremento de la transparencia técnica ante el cliente final y blindaje legal de la evidencia en la nube contra pérdidas del almacenamiento físico local[cite: 13, 15].
+* **Métricas Financieras Proyectadas:**
+  * **Retorno de Inversión (ROI):** Calculado sobre la optimización del tiempo del personal técnico frente al costo mínimo de servidores, proyectando un beneficio neto del **188%** en el primer año de uso operativo[cite: 15].
+  * **Tiempo de Recuperación (Payback Period):** La inversión inicial de configuración e infraestructura del Sprint 0 se amortiza por completo en los primeros **1.5 meses** tras el despliegue de la solución estable[cite: 11, 15].
+
+#### F. Evaluación de Riesgos y Matriz de Mitigación (Risk Assessment)
+Para garantizar la viabilidad operativa y el control de la deuda técnica, las amenazas identificadas se gestionararán bajo la siguiente matriz[cite: 15]:
+
+| ID | Categoría de Riesgo[cite: 15] | Descripción del Riesgo | Impacto | Estrategia de Mitigación Ágil |
+| :--- | :--- | :--- | :--- | :--- |
+| **R-01** | **Tecnológico** | Inconsistencia de entornos locales o fallas de conectividad con PostgreSQL como las ocurridas en el arranque[cite: 14, 15]. | Alto | Uso obligatorio del archivo `.env.example` y revisiones cruzadas (*pair programming*) antes de integrar código a `main`[cite: 14]. |
+| **R-02** | **Operativo** | Resistencia al cambio o dificultad para registrar datos bajo el sol e inclemencias climáticas en la obra[cite: 13, 15]. | Alto | Diseño de interfaz UI/UX Mobile-First basado estrictamente en las entrevistas previas con el Ing. Uziel Ramírez (botones grandes, flujos de pocos clics)[cite: 13]. |
+| **R-03** | **Financiero / Tiempo** | Ventana de ejecución académica críticamente corta (23 días) que comprometa la entrega del MVP[cite: 11, 15]. | Crítico | Enfoque riguroso en Scrum. Congelamiento estricto del alcance al cierre del Sprint 2; el Sprint 3 priorizará la estabilidad del motor de exportación e imágenes sobre adiciones estéticas avanzadas[cite: 11, 15]. |
+
+#### G. Cronograma de Hitos (Milestone Schedule)
+Mapa de ruta de alto nivel para el cumplimiento de las metas críticas sin micro-gestión diaria[cite: 15]:
+* **Hito 1 (20/06/2026) - Cierre del Sprint 0:** Monorepo en GitHub configurado, base de datos PostgreSQL estructurada y aprobada, endpoint base verificado mediante fetching exitoso[cite: 11, 14, 15].
+* **Hito 2 (26/06/2026) - Cierre del Sprint 1:** Capa de Seguridad activa, endpoints de la API REST tokenizados mediante JWT y pantalla de Login funcional[cite: 11, 15].
+* **Hito 3 (02/07/2026) - Cierre del Sprint 2:** Core I completado (Panel de administración de proyectos activos y formularios funcionales de captura de datos técnicos diarios)[cite: 11, 15].
+* **Hito 4 (08/07/2026) - Cierre del Sprint 3:** Core II integrado (Carga multimedia a Cloud Storage y algoritmo de generación automatizada de reportes en PDF/Excel). Congelamiento definitivo del código del MVP para entrega formal a la Dra. Arlem Castillo[cite: 11, 13, 15].
+
+---
+
+### 5.3 El Caso de Negocio en Entornos Ágiles
+A diferencia del modelo tradicional en cascada (Waterfall) donde este documento se congelaría de forma contractual antes de programar la primera línea de código, en CivilTrack el Caso de Negocio actúa como un **artefacto vivo**[cite: 15]. Al finalizar cada una de nuestras revisiones de iteración (*Sprint Review*), se confrontará el incremento de software frente a la realidad operativa de la obra civil[cite: 15]. 
+
+La selección de **SCRUM** sobre Kanban está técnicamente fundamentada en la necesidad de establecer este *Timeboxing* estricto ante la ventana temporal compacta de 23 días (del **15/06/2026 al 08/07/2026**)[cite: 11, 15]. Los bloques de Sprints fijos y la división clara de roles asignados de manera transversal (Líder Frontend, Backend, DBA y PM) nos obligan a liberar incrementos de software funcionales y balancear la carga de trabajo, evitando que las condiciones del mercado del cliente o problemas técnicos superen los beneficios calculados[cite: 11, 12, 14, 15]. Si el costo del almacenamiento multimedia en la nube se eleva drásticamente, el marco ágil nos permite pivotar los requerimientos de manera anticipada, minimizando cualquier tipo de pérdida financiera[cite: 13, 15].
+
+### 5.4 Matriz de Mitigación de Riesgos Ágiles
 
 | ID | Riesgo Detectado | Impacto | Estrategia de Mitigación Ágil |
 | :--- | :--- | :--- | :--- |
