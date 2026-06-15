@@ -80,7 +80,7 @@ En la ingeniería de software, una excelente idea técnica no garantiza el finan
 * **Problema Identificado:** El desfase de 48 a 72 horas en la consolidación de reportes diarios debido al uso de papel y la dispersión multimedia en WhatsApp.
 * **Alternativas Evaluadas:**
   * *Adquisición de ERPs Comerciales (SAP/Neodata):* Descartado por altos costos de licenciamiento y excesiva complejidad de módulos contables que no se adaptan al uso rápido "con casco y botas" en el frente de obra.
-  * *Desarrollo a Medida (CivilTrack PWA):* Opción seleccionada por su enfoque de usabilidad extrema (Mobile-First), nulo costo de licenciamiento de software comercial y adaptabilidad inmediata a los requerimientos del Ing. Uziel Ramírez.
+  * *Desarrollo a Medida (CivilTrack PWA):* Opción seleccionada por su enfoque de usabilidad extrema (Mobile-First), nulo costo de licenciamiento de software comercial y adaptabilidad inmediata a los requerimientos del Ingeniero.
 
 ---
 
