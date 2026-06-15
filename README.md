@@ -71,7 +71,7 @@ Ajustado estrictamente a la ventana crítica académica del **15/06/2026 al 08/0
 * *Análisis de la Curva:* Descenso óptimo y controlado dentro de la ventana del bloque de infraestructura, eliminando deudas técnicas iniciales para el inicio del Sprint 1.
 
 ## 💼 5. Caso de Negocio Estructurado (Business Case Vivo)
-*Soporte de Justificación Estratégica, Metodológica y Financiera bajo los lineamientos puros de la Ingeniería de Software (Dra. Arlem Aleida Castillo Avila).*
+*Soporte de Justificación Estratégica, Metodológica y Financiera bajo los lineamientos puros de la Ingeniería de Software.*
 
 ### 5.1 Definición y Propósito Fundamental
 En la ingeniería de software, una excelente idea técnica no garantiza el financiamiento ni el éxito operativo. El Caso de Negocio de CivilTrack funciona como un documento directivo formal que justifica la asignación de nuestros recursos humanos, tecnológicos y temporales para este desarrollo. Su propósito central no es detallar la especificación técnica de requerimientos (SRS), sino responder de manera objetiva a la validación estratégica de por qué este sistema debe construirse y cuál es su viabilidad real frente al mercado de la construcción en campo.
