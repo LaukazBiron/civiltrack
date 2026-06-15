@@ -56,7 +56,7 @@ Ajustado estrictamente a la ventana crítica académica del **15/06/2026 al 08/0
 
 ## 🛠️ 4. Tablero de Control Ágil (Cierre de Sprint 0)
 
-### Tareas Técnicas Concluidas (Sprint Backlog 0)
+### Tareas Técnicas (Sprint Backlog 0)
 * `[TS0-01]` Setup del Repositorio Monorepo en GitHub y políticas de ramas (`main` / `develop`). **(Responsable: Limhi)**
 * `[TS0-02]` Rediseño, corrección y aprobación del modelo relacional en PostgreSQL. **(Responsable: Ahmed)**
 * `[TS0-03]` Configuración del servidor Backend (Node.js/Express) y endpoint base. **(Responsable: Cristian)**
