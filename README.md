@@ -3,7 +3,7 @@
 ## 🏢 Datos Institucionales
 * **Institución:** Benemérita Universidad Autónoma de Puebla (BUAP)
 * **Facultad:** Ciencias de la Computación (FCC)
-* **Materia:** Administración de Proyectos
+* **Materia:** Ingenieria de Software
 * **Catedrática:** Dra. Arlem Aleida Castillo Avila
 * **Periodo de Ejecución:** 15 de Junio de 2026 al 08 de Julio de 2026
 
@@ -11,7 +11,7 @@
 * **Lopez Momox Limhi Gerson** (Matrícula: 202379434) - *Project Manager & Analista*
 * **González Rojas Cristian Uriel** (Matrícula: 202336276) - *Líder de Backend & Arquitectura*
 * **Bañuelos Atonal Omar** (Matrícula: 202319666) - *Líder de Frontend & UI/UX*
-* **Cortes Tapia Ahmed** (Matrícula: 202323724) - *QA Tester & Technical Writer*
+* **Cortes Tapia Ahmed** (Matrícula: ) - *QA Tester & Technical Writer*
 
 ---
 
