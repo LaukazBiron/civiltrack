@@ -3,7 +3,7 @@
 ## 🏢 Datos Institucionales
 * **Institución:** Benemérita Universidad Autónoma de Puebla (BUAP)
 * **Facultad:** Ciencias de la Computación (FCC)
-* **Materia:** Ingenieria de Software
+* **Materia:** Ingeniería de Software
 * **Catedrática:** Dra. Arlem Aleida Castillo Avila
 * **Periodo de Ejecución:** 15 de Junio de 2026 al 08 de Julio de 2026
 
@@ -24,7 +24,7 @@ CivilTrack es una Aplicación Web Progresiva (PWA) diseñada bajo un enfoque **M
 
 | ID | Historia de Usuario / Requisito | Prioridad | Estimación (Puntos) | Estado |
 | :--- | :--- | :--- | :--- | :--- |
-| **HU-01** | Como Residente quiero Iniciar Sesión para acceder de manera segura a las obras asignadas. | Alta | 3 | Completado (Sprint 0) |
+| **HU-01** | Como Residente quiero Iniciar Sesión para acceder de manera segura a las obras asignadas. | Alta | 3 | Pendiente (Sprint 0) |
 | **HU-02** | Como Administrador quiero Registrar Obras para dar de alta nuevos frentes de trabajo. | Alta | 5 | Pendiente |
 | **HU-03** | Como Residente quiero Crear Reportes Diarios con texto y notas técnicas del avance físico. | Alta | 5 | Pendiente |
 | **HU-04** | Como Residente quiero Adjuntar Evidencia Fotográfica usando la cámara o galería del móvil. | Alta | 8 | Pendiente |
