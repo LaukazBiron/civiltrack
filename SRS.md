@@ -9,7 +9,7 @@
 * **RF-02: Control de Recursos en Campo:** El sistema debe proveer formularios dedicados para el registro diario del personal activo (asistencia/cuadrillas) y la maquinaria utilizada en la jornada.
 * **RF-03: Visualización de Estatus Operativo:** El sistema debe desplegar un panel de control local (Dashboard) que muestre de forma gráfica el rendimiento diario del proyecto, desglosando los costos directos básicos capturados.
 * **RF-04: Historial y Edición de Bitácoras:** El sistema debe permitir al usuario consultar y editar bitácoras operativas de jornadas anteriores para corregir datos técnicos o de asistencia antes del cierre mensual.
-* **RF-05: Exportación Automatizada (PDF/Excel):** El sistema debe compilar la información capturada y exportarla en formatos interoperables (PDF y hojas de cálculo Excel) estructurados de forma limpia para revisiones o firmas.
+* **RF-05: Exportación Automatizada (PDF):** El sistema debe compilar la información capturada y exportarla en PDF estructurados de forma limpia para revisiones o firmas.
 
 ---
 
