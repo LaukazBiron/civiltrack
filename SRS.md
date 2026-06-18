@@ -65,10 +65,10 @@
 
 ---
 
-## 5. Especificación del Diagrama de Casos de Uso - El Puente de Cristal
+## 6. Especificación del Diagrama de Casos de Uso
 *Modelado formal del comportamiento del sistema basado en los cuadrantes de la Matriz MoSCoW, extendido para soportar Control de Acceso Basado en Roles (RBAC) y persistencia flexible de multimedia.*
 
-### 5.1 Elementos del Diagrama
+### 6.1 Elementos del Diagrama
 
 #### A. Actores del Sistema
 * **👤 Ingeniero Residente:** Actor operativo en campo. Registra incidencias, asistencia y maquinaria. Solo tiene permitido visualizar y editar las bitácoras que están explícitamente ligadas a su usuario.
@@ -81,7 +81,7 @@
 
 ---
 
-### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles)
+### 6.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles)
 
 | ID | Caso de Uso | Actores | Cat. MoSCoW | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
@@ -96,7 +96,7 @@
 
 ---
 
-### 5.4 Diagrama de Casos de Uso en Mermaid
+### 6.3 Diagrama de Casos de Uso en Mermaid
 
 ```mermaid
 graph LR
