@@ -39,3 +39,36 @@
 | *Funciones principales del producto, cumplimiento y acceso.*<br><br>* **RF-01: Registro de incidencias en campo** (Texto libre y almacenamiento local de hasta 3 fotografías).<br>* **RF-02: Control de recursos esenciales** (Formularios de asistencia de personal y uso de maquinaria pesada).<br>* **RXU-01: Persistencia fuera de línea (Modo Offline)** básico para guardar los datos localmente en la PWA sin señal.<br>* **RS-01: Registro y autenticación de usuario** mediante inicio de sesión tradicional y manejo de tokens JWT.<br>* **RS-02: Protección de configuración** de la base de datos PostgreSQL mediante variables de entorno (`.env`). | *Características importantes que aportan gran valor, pero no detienen el lanzamiento.*<br><br>* **RF-03: Panel de análisis operativo (Dashboard)** gráfico local que desglose visualmente los costos directos capturados.<br>* **RF-05: Exportación Automatizada a PDF** (Compilación limpia de la información en un reporte PDF listo para firmas o revisiones).<br>* **RXU-05: Carga ágil de multimedia** que se conecte directamente con la cámara nativa del dispositivo móvil para reducir clics en el frente de obra. |
 | 🟤 NO TENDRÁ (Won't Have) | 🟣 PODRÍA TENER (Could Have) |
 | *Funciones totalmente fuera del alcance del MVP académico actual.*<br><br>* **Exportación interoperable a formato Excel** u otras hojas de cálculo (priorizando únicamente el motor de PDF).<br>* **Sistemas de georreferenciación restrictivos (GPS)** o validaciones complejas por polígonos topográficos en campo.<br>* **Funciones de gamificación** o sistemas de recompensas por rendimiento de cuadrillas.<br>* **Temas de usuario personalizados** o interfaces altamente configurables.<br>* **Integración de comandos de voz** para el dictado de incidencias de manos libres. | *Mejoras secundarias o estéticas si el tiempo y los Sprints lo permiten.*<br><br>* **Modo oscuro** en la interfaz UI/UX para reducir la fatiga visual en jornadas nocturnas o ante alta exposición solar.<br>* **Opciones de filtrado avanzado** e histórico multidimensional en la consulta de bitácoras pasadas.<br>* **Soporte de idiomas adicional** (diseño internacional), manteniendo la aplicación exclusivamente en español para el lanzamiento. |
+
+## 5. Especificación del Diagrama de Casos de Uso - El Puente de Cristal
+*Modelado formal del comportamiento del sistema basado estrictamente en las fronteras definidas por los cuadrantes Must Have y Should Have de la Matriz MoSCoW. Los requerimientos Could y Won't Have quedan explícitamente fuera del límite del sistema.*
+
+### 5.1 Elementos del Diagrama
+
+#### A. Actores del Sistema
+*   **👤 Supervisor de Obra (Actor Principal):** Personal técnico en el frente de trabajo encargado de la captura de datos, gestión de recursos y consulta del estatus operativo de la obra civil.
+
+#### B. Límites del Sistema (System Boundary): CivilTrack PWA
+*   Representa la frontera de la aplicación web progresiva y la API REST que encapsula la lógica de negocio autorizada.
+
+---
+
+### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW)
+
+| ID | Caso de Uso (Acción) | Actor | Categoría MoSCoW | Requerimiento Asociado | Description |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **CU-01** | Iniciar Sesión | Supervisor | **Must Have** | RS-01 / RS-02 | El usuario ingresa sus credenciales de forma segura para obtener un token JWT y acceder al sistema. |
+| **CU-02** | Registrar Incidencia | Supervisor | **Must Have** | RF-01 / RXU-01 | Permite redactar la bitácora de la jornada y almacenar hasta 3 fotografías, con soporte offline si no hay red. |
+| **CU-03** | Controlar Recursos | Supervisor | **Must Have** | RF-02 | Permite registrar la asistencia de las cuadrillas de personal y el uso cronológico de la maquinaria pesada. |
+| **CU-04** | Consultar Dashboard | Supervisor | **Should Have** | RF-03 / RXU-03 | Despliega gráficos locales con el rendimiento financiero diario y el desglose de costos directos capturados. |
+| **CU-05** | Exportar Reporte PDF | Supervisor | **Should Have** | RF-04 / RF-05 | Compila la información de las bitácoras seleccionadas y genera de forma automatizada un archivo PDF limpio listo para firmas. |
+
+---
+
+### 5.3 Relaciones y Reglas de Negocio (Diagramación)
+
+1. **Relación de Inclusión (`<<include>>`):**
+   * Los Casos de Uso **CU-02 (Registrar Incidencia)**, **CU-03 (Controlar Recursos)**, **CU-04 (Consultar Dashboard)** y **CU-05 (Exportar Reporte PDF)** requieren obligatoriamente que el usuario esté autenticado. Por lo tanto, todos ellos incluyen (`<<include>>`) conceptualmente al **CU-01 (Iniciar Sesión)**.
+2. **Exclusiones Explícitas (Fuera del Límite del Sistema):**
+   * **NO** se modela el caso de uso "Exportar a Excel" (Excluido del MVP).
+   * **NO** se modelan módulos de "Validación de Polígonos GPS", "Configuración de Idiomas" ni "Activación de Comandos de Voz", ya que violarían la restricción crítica del bloque de la antología.
