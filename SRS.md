@@ -65,10 +65,102 @@
 
 ---
 
-### 5.3 Relaciones y Reglas de Negocio (Diagramación)
+## 5. Especificación del Diagrama de Casos de Uso - El Puente de Cristal
+*Modelado formal del comportamiento del sistema basado en los cuadrantes de la Matriz MoSCoW, extendido para soportar Control de Acceso Basado en Roles (RBAC) y persistencia flexible de multimedia.*
 
-1. **Relación de Inclusión (`<<include>>`):**
-   * Los Casos de Uso **CU-02 (Registrar Incidencia)**, **CU-03 (Controlar Recursos)**, **CU-04 (Consultar Dashboard)** y **CU-05 (Exportar Reporte PDF)** requieren obligatoriamente que el usuario esté autenticado. Por lo tanto, todos ellos incluyen (`<<include>>`) conceptualmente al **CU-01 (Iniciar Sesión)**.
-2. **Exclusiones Explícitas (Fuera del Límite del Sistema):**
-   * **NO** se modela el caso de uso "Exportar a Excel" (Excluido del MVP).
-   * **NO** se modelan módulos de "Validación de Polígonos GPS", "Configuración de Idiomas" ni "Activación de Comandos de Voz", ya que violarían la restricción crítica del bloque de la antología.
+### 5.1 Elementos del Diagrama
+
+#### A. Actores del Sistema
+* **👤 Ingeniero Residente:** Actor operativo en campo. Registra incidencias, asistencia y maquinaria. Solo tiene permitido visualizar y editar las bitácoras que están explícitamente ligadas a su usuario.
+* **👤 Administrador:** Usuario con control total del sistema. Tiene acceso irrestricto para visualizar, auditar y consultar todos los reportes de todas las obras del sistema.
+* **👤 Cliente-Dueño / Inversionista:** Actor de supervisión ejecutiva. Cuenta con permisos globales de solo lectura para visualizar el avance de todos los reportes e incidencias del proyecto.
+* **👤 Desarrollador:** Perfil técnico de soporte. Cuenta con acceso global de lectura a todos los reportes con fines de mantenimiento técnico, auditoría de datos y depuración de la base de datos.
+
+#### B. Límites del Sistema (System Boundary): CivilTrack PWA
+* Frontera que encapsula los servicios de la aplicación y valida los niveles de acceso mediante tokens JWT según el rol del actor.
+
+---
+
+### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles)
+
+| ID | Caso de Uso | Actores | Cat. MoSCoW | Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| **CU-01** | Iniciar Sesión | Todos los actores | **Must Have** | Validación de credenciales. Retorna el token JWT con el rol asignado. |
+| **CU-02** | Registrar Incidencia | Ingeniero Residente | **Must Have** | Permite crear la bitácora diaria. Las fotos son opcionales (se puede inicializar con 0 fotos). |
+| **CU-03** | Controlar Recursos | Ingeniero Residente | **Must Have** | Captura diaria de asistencia de cuadrillas y uso de maquinaria. |
+| **CU-04** | Actualizar Multimedia | Ingeniero Residente | **Must Have** | Permite adjuntar o actualizar las fotografías del reporte de forma posterior. |
+| **CU-05** | Consultar Reportes (Propio) | Ingeniero Residente | **Must Have** | Visualización restringida únicamente a las bitácoras asignadas a su usuario. |
+| **CU-06** | Consultar Reportes (Global) | Administrador, Cliente, Desarrollador | **Must Have** | Acceso irrestricto para visualizar el histórico completo de incidencias del sistema. |
+| **CU-07** | Consultar Dashboard | Supervisor, Administrador, Cliente | **Should Have** | Visualización de métricas y gráficos de rendimiento financiero local. |
+| **CU-08** | Exportar Reporte PDF | Supervisor, Administrador, Cliente | **Should Have** | Generación de reportes PDF limpios basados en los filtros de acceso aplicados. |
+
+---
+
+### 5.4 Diagrama de Casos de Uso en Mermaid
+
+```mermaid
+graph LR
+    %% Definición de Actores (Izquierda y Derecha para distribución limpia)
+    subgraph Actores_Campo [Operación]
+        Residente["👤 Ingeniero Residente"]
+    end
+
+    subgraph Actores_Admin [Gestión y Soporte]
+        Admin["👤 Administrador"]
+        Cliente["👤 Cliente/Inversionista"]
+        Desarrollador["👤 Desarrollador"]
+    end
+
+    %% Límite del Sistema
+    subgraph CivilTrack["📱 Límite del Sistema: CivilTrack PWA"]
+        CU01((CU-01: Iniciar Sesión))
+        CU02((CU-02: Registrar Incidencia))
+        CU03((CU-03: Controlar Recursos))
+        CU04((CU-04: Actualizar Multimedia))
+        CU05((CU-05: Consultar Reportes Propio))
+        CU06((CU-06: Consultar Reportes Global))
+        CU07((CU-07: Consultar Dashboard))
+        CU08((CU-08: Exportar Reporte PDF))
+    end
+
+    %% Estilos MoSCoW
+    style CU01 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style CU02 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style CU03 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style CU04 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style CU05 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style CU06 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style CU07 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style CU08 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+
+    %% Conexiones del Residente (Scope Local)
+    Residente --> CU01
+    Residente --> CU02
+    Residente --> CU03
+    Residente --> CU04
+    Residente --> CU05
+    Residente --> CU07
+    Residente --> CU08
+
+    %% Conexiones de Roles Globales (Scope Total)
+    Admin --> CU01
+    Admin --> CU06
+    Admin --> CU07
+    Admin --> CU08
+
+    Cliente --> CU01
+    Cliente --> CU06
+    Cliente --> CU07
+    Cliente --> CU08
+
+    Desarrollador --> CU01
+    Desarrollador --> CU06
+
+    %% Inclusiones <<include>> hacia autenticación
+    CU02 -. "<<include>>" .-> CU01
+    CU03 -. "<<include>>" .-> CU01
+    CU04 -. "<<include>>" .-> CU01
+    CU05 -. "<<include>>" .-> CU01
+    CU06 -. "<<include>>" .-> CU01
+    CU07 -. "<<include>>" .-> CU01
+    CU08 -. "<<include>>" .-> CU01
