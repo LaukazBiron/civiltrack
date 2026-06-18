@@ -40,7 +40,7 @@
 | 🟤 NO TENDRÁ (Won't Have) | 🟣 PODRÍA TENER (Could Have) |
 | *Funciones totalmente fuera del alcance del MVP académico actual.*<br><br>* **Exportación interoperable a formato Excel** u otras hojas de cálculo (priorizando únicamente el motor de PDF).<br>* **Sistemas de georreferenciación restrictivos (GPS)** o validaciones complejas por polígonos topográficos en campo.<br>* **Funciones de gamificación** o sistemas de recompensas por rendimiento de cuadrillas.<br>* **Temas de usuario personalizados** o interfaces altamente configurables.<br>* **Integración de comandos de voz** para el dictado de incidencias de manos libres. | *Mejoras secundarias o estéticas si el tiempo y los Sprints lo permiten.*<br><br>* **Modo oscuro** en la interfaz UI/UX para reducir la fatiga visual en jornadas nocturnas o ante alta exposición solar.<br>* **Opciones de filtrado avanzado** e histórico multidimensional en la consulta de bitácoras pasadas.<br>* **Soporte de idiomas adicional** (diseño internacional), manteniendo la aplicación exclusivamente en español para el lanzamiento. |
 
-## 5. Especificación del Diagrama de Casos de Uso - El Puente de Cristal
+## 5. Especificación del Diagrama de Casos de Uso
 *Modelado formal del comportamiento del sistema basado estrictamente en las fronteras definidas por los cuadrantes Must Have y Should Have de la Matriz MoSCoW. Los requerimientos Could y Won't Have quedan explícitamente fuera del límite del sistema.*
 
 ### 5.1 Elementos del Diagrama
