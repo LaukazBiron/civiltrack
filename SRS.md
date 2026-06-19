@@ -81,7 +81,7 @@
 
 ---
 
-### 6.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles)
+### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles Actualizado)
 
 | ID | Caso de Uso | Actores | Cat. MoSCoW | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
@@ -89,18 +89,19 @@
 | **CU-02** | Registrar Incidencia | Ingeniero Residente | **Must Have** | Permite crear la bitácora diaria. Las fotos son opcionales (se puede inicializar con 0 fotos). |
 | **CU-03** | Controlar Recursos | Ingeniero Residente | **Must Have** | Captura diaria de asistencia de cuadrillas y uso de maquinaria. |
 | **CU-04** | Actualizar Multimedia | Ingeniero Residente | **Must Have** | Permite adjuntar o actualizar las fotografías del reporte de forma posterior. |
-| **CU-05** | Consultar Reportes (Propio) | Ingeniero Residente | **Must Have** | Visualización restringida únicamente a las bitácoras asignadas a su usuario. |
-| **CU-06** | Consultar Reportes (Global) | Administrador, Cliente, Desarrollador | **Must Have** | Acceso irrestricto para visualizar el histórico completo de incidencias del sistema. |
-| **CU-07** | Consultar Dashboard | Supervisor, Administrador, Cliente | **Should Have** | Visualización de métricas y gráficos de rendimiento financiero local. |
-| **CU-08** | Exportar Reporte PDF | Supervisor, Administrador, Cliente | **Should Have** | Generación de reportes PDF limpios basados en los filtros de acceso aplicados. |
+| **CU-05** | Consultar y Buscar Reportes (Propio) | Ingeniero Residente | **Must Have** | Visualización y barra de búsqueda inteligente restringida únicamente a las obras y bitácoras asignadas a su usuario. |
+| **CU-06** | Consultar y Buscar Reportes (Global) | Administrador, Cliente, Desarrollador | **Must Have** | Acceso irrestricto y barra de búsqueda inteligente para localizar cualquier proyecto o bitácora en el histórico completo del sistema. |
+| **CU-07** | Cerrar Sesión por Inactividad | Todos los actores | **Must Have** | Automatismo de seguridad que destruye el token de sesión local tras un periodo de inactividad detectado en la PWA. |
+| **CU-08** | Consultar Dashboard | Supervisor, Administrador, Cliente | **Should Have** | Visualización de métricas y gráficos de rendimiento financiero local. |
+| **CU-09** | Exportar Reporte PDF | Supervisor, Administrador, Cliente | **Should Have** | Generación de reportes PDF limpios basados en los filtros de acceso y búsqueda aplicados. |
 
 ---
 
-### 6.3 Diagrama de Casos de Uso en Mermaid
+### 5.4 Diagrama de Casos de Uso en Mermaid
 
 ```mermaid
 graph LR
-    %% Definición de Actores (Izquierda y Derecha para distribución limpia)
+    %% Definición de Actores
     subgraph Actores_Campo [Operación]
         Residente["👤 Ingeniero Residente"]
     end
@@ -117,10 +118,11 @@ graph LR
         CU02((CU-02: Registrar Incidencia))
         CU03((CU-03: Controlar Recursos))
         CU04((CU-04: Actualizar Multimedia))
-        CU05((CU-05: Consultar Reportes Propio))
-        CU06((CU-06: Consultar Reportes Global))
-        CU07((CU-07: Consultar Dashboard))
-        CU08((CU-08: Exportar Reporte PDF))
+        CU05((CU-05: Consultar y Buscar Reportes Propio))
+        CU06((CU-06: Consultar y Buscar Reportes Global))
+        CU07((CU-07: Cerrar Sesión por Inactividad))
+        CU08((CU-08: Consultar Dashboard))
+        CU09((CU-09: Exportar Reporte PDF))
     end
 
     %% Estilos MoSCoW
@@ -130,8 +132,9 @@ graph LR
     style CU04 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style CU05 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style CU06 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style CU07 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style CU07 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style CU08 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style CU09 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
 
     %% Conexiones del Residente (Scope Local)
     Residente --> CU01
@@ -141,20 +144,24 @@ graph LR
     Residente --> CU05
     Residente --> CU07
     Residente --> CU08
+    Residente --> CU09
 
     %% Conexiones de Roles Globales (Scope Total)
     Admin --> CU01
     Admin --> CU06
     Admin --> CU07
     Admin --> CU08
+    Admin --> CU09
 
     Cliente --> CU01
     Cliente --> CU06
     Cliente --> CU07
     Cliente --> CU08
+    Cliente --> CU09
 
     Desarrollador --> CU01
     Desarrollador --> CU06
+    Desarrollador --> CU07
 
     %% Inclusiones <<include>> hacia autenticación
     CU02 -. "<<include>>" .-> CU01
@@ -164,3 +171,4 @@ graph LR
     CU06 -. "<<include>>" .-> CU01
     CU07 -. "<<include>>" .-> CU01
     CU08 -. "<<include>>" .-> CU01
+    CU09 -. "<<include>>" .-> CU01
