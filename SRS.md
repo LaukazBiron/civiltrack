@@ -53,34 +53,6 @@
 
 ---
 
-### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW)
-
-| ID | Caso de Uso (Acción) | Actor | Categoría MoSCoW | Requerimiento Asociado | Description |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CU-01** | Iniciar Sesión | Supervisor | **Must Have** | RS-01 / RS-02 | El usuario ingresa sus credenciales de forma segura para obtener un token JWT y acceder al sistema. |
-| **CU-02** | Registrar Incidencia | Supervisor | **Must Have** | RF-01 / RXU-01 | Permite redactar la bitácora de la jornada y almacenar hasta 3 fotografías, con soporte offline si no hay red. |
-| **CU-03** | Controlar Recursos | Supervisor | **Must Have** | RF-02 | Permite registrar la asistencia de las cuadrillas de personal y el uso cronológico de la maquinaria pesada. |
-| **CU-04** | Consultar Dashboard | Supervisor | **Should Have** | RF-03 / RXU-03 | Despliega gráficos locales con el rendimiento financiero diario y el desglose de costos directos capturados. |
-| **CU-05** | Exportar Reporte PDF | Supervisor | **Should Have** | RF-04 / RF-05 | Compila la información de las bitácoras seleccionadas y genera de forma automatizada un archivo PDF limpio listo para firmas. |
-
----
-
-## 6. Especificación del Diagrama de Casos de Uso
-*Modelado formal del comportamiento del sistema basado en los cuadrantes de la Matriz MoSCoW, extendido para soportar Control de Acceso Basado en Roles (RBAC) y persistencia flexible de multimedia.*
-
-### 6.1 Elementos del Diagrama
-
-#### A. Actores del Sistema
-* **👤 Ingeniero Residente:** Actor operativo en campo. Registra incidencias, asistencia y maquinaria. Solo tiene permitido visualizar y editar las bitácoras que están explícitamente ligadas a su usuario.
-* **👤 Administrador:** Usuario con control total del sistema. Tiene acceso irrestricto para visualizar, auditar y consultar todos los reportes de todas las obras del sistema.
-* **👤 Cliente-Dueño / Inversionista:** Actor de supervisión ejecutiva. Cuenta con permisos globales de solo lectura para visualizar el avance de todos los reportes e incidencias del proyecto.
-* **👤 Desarrollador:** Perfil técnico de soporte. Cuenta con acceso global de lectura a todos los reportes con fines de mantenimiento técnico, auditoría de datos y depuración de la base de datos.
-
-#### B. Límites del Sistema (System Boundary): CivilTrack PWA
-* Frontera que encapsula los servicios de la aplicación y valida los niveles de acceso mediante tokens JWT según el rol del actor.
-
----
-
 ### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles Actualizado)
 
 | ID | Caso de Uso | Actores | Cat. MoSCoW | Descripción |
