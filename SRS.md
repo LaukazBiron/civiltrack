@@ -40,32 +40,25 @@
 | 🟤 NO TENDRÁ (Won't Have) | 🟣 PODRÍA TENER (Could Have) |
 | *Funciones totalmente fuera del presupuesto y alcance de esta primera etapa.*<br><br>* **Exportación de reportes a archivos de Excel:** El sistema se enfocará exclusivamente en reportes PDF legibles e institucionales.<br>* **Rastreo satelital por GPS restrictivo:** No se bloqueará la aplicación por ubicación geográfica ni se validarán polígonos topográficos en tiempo real.<br>* **Módulo de juego o recompensas (Gamificación):** No habrá sistemas de puntos ni premios por rendimiento de personal.<br>* **Diseño visual personalizado por usuario:** La interfaz mantendrá una estética fija, limpia y corporativa sin opciones de cambio de temas.<br>* **Dictado por voz:** No se incluirá control de manos libres ni dictado de incidencias mediante comandos de voz. | *Mejoras secundarias que se sumarán solo si el tiempo de desarrollo lo permite.*<br><br>* **Modo oscuro integrado:** Opción de cambiar la pantalla a tonos oscuros para evitar el cansancio de la vista en jornadas nocturnas o bajo el sol brillante del día.<br>* **Soporte multi-idioma:** Preparación del sistema para traducción a otros idiomas (el lanzamiento inicial será 100% en español). |
 
+---
+
 ## 5. Especificación del Diagrama de Casos de Uso
-*Modelado formal del comportamiento del sistema basado estrictamente en las fronteras definidas por los cuadrantes Must Have y Should Have de la Matriz MoSCoW. Los requerimientos Could y Won't Have quedan explícitamente fuera del límite del sistema.*
+*Modelado formal del comportamiento del sistema basado en los cuadrantes de la Matriz MoSCoW, extendido para soportar Control de Acceso Basado en Roles (RBAC) y persistencia flexible de multimedia.*
 
 ### 5.1 Elementos del Diagrama
 
 #### A. Actores del Sistema
-*   **👤 Supervisor de Obra (Actor Principal):** Personal técnico en el frente de trabajo encargado de la captura de datos, gestión de recursos y consulta del estatus operativo de la obra civil.
+* **👤 Ingeniero Residente:** Actor operativo en campo. Registra incidencias, asistencia y maquinaria. Solo tiene permitido visualizar y editar las bitácoras que están explícitamente ligadas a su usuario.
+* **👤 Administrador:** Usuario con control total del sistema. Tiene acceso irrestricto para visualizar, auditar y consultar todos los reportes de todas las obras del sistema.
+* **👤 Cliente-Dueño / Inversionista:** Actor de supervisión ejecutiva. Cuenta con permisos globales de solo lectura para visualizar el avance de todos los reportes e incidencias del proyecto.
+* **👤 Desarrollador:** Perfil técnico de soporte. Cuenta con acceso global de lectura a todos los reportes con fines de mantenimiento técnico, auditoría de datos y depuración de la base de datos.
 
 #### B. Límites del Sistema (System Boundary): CivilTrack PWA
-*   Representa la frontera de la aplicación web progresiva y la API REST que encapsula la lógica de negocio autorizada.
+* Frontera que encapsula los servicios de la aplicación y valida los niveles de acceso mediante tokens JWT según el rol del actor.
 
 ---
 
-### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW)
-
-| ID | Caso de Uso (Acción) | Actor | Categoría MoSCoW | Requerimiento Asociado | Description |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CU-01** | Iniciar Sesión | Supervisor | **Must Have** | RS-01 / RS-02 | El usuario ingresa sus credenciales de forma segura para obtener un token JWT y acceder al sistema. |
-| **CU-02** | Registrar Incidencia | Supervisor | **Must Have** | RF-01 / RXU-01 | Permite redactar la bitácora de la jornada y almacenar hasta 3 fotografías, con soporte offline si no hay red. |
-| **CU-03** | Controlar Recursos | Supervisor | **Must Have** | RF-02 | Permite registrar la asistencia de las cuadrillas de personal y el uso cronológico de la maquinaria pesada. |
-| **CU-04** | Consultar Dashboard | Supervisor | **Should Have** | RF-03 / RXU-03 | Despliega gráficos locales con el rendimiento financiero diario y el desglose de costos directos capturados. |
-| **CU-05** | Exportar Reporte PDF | Supervisor | **Should Have** | RF-04 / RF-05 | Compila la información de las bitácoras seleccionadas y genera de forma automatizada un archivo PDF limpio listo para firmas. |
-
----
-
-### 5.3 Tabla de Casos de Uso (Mapeo MoSCoW & Roles Actualizado)
+### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles)
 
 | ID | Caso de Uso | Actores | Cat. MoSCoW | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
@@ -73,19 +66,18 @@
 | **CU-02** | Registrar Incidencia | Ingeniero Residente | **Must Have** | Permite crear la bitácora diaria. Las fotos son opcionales (se puede inicializar con 0 fotos). |
 | **CU-03** | Controlar Recursos | Ingeniero Residente | **Must Have** | Captura diaria de asistencia de cuadrillas y uso de maquinaria. |
 | **CU-04** | Actualizar Multimedia | Ingeniero Residente | **Must Have** | Permite adjuntar o actualizar las fotografías del reporte de forma posterior. |
-| **CU-05** | Consultar y Buscar Reportes (Propio) | Ingeniero Residente | **Must Have** | Visualización y barra de búsqueda inteligente restringida únicamente a las obras y bitácoras asignadas a su usuario. |
-| **CU-06** | Consultar y Buscar Reportes (Global) | Administrador, Cliente, Desarrollador | **Must Have** | Acceso irrestricto y barra de búsqueda inteligente para localizar cualquier proyecto o bitácora en el histórico completo del sistema. |
-| **CU-07** | Cerrar Sesión por Inactividad | Todos los actores | **Must Have** | Automatismo de seguridad que destruye el token de sesión local tras un periodo de inactividad detectado en la PWA. |
-| **CU-08** | Consultar Dashboard | Supervisor, Administrador, Cliente | **Should Have** | Visualización de métricas y gráficos de rendimiento financiero local. |
-| **CU-09** | Exportar Reporte PDF | Supervisor, Administrador, Cliente | **Should Have** | Generación de reportes PDF limpios basados en los filtros de acceso y búsqueda aplicados. |
+| **CU-05** | Consultar Reportes (Propio) | Ingeniero Residente | **Must Have** | Visualización restringida únicamente a las bitácoras asignadas a su usuario. |
+| **CU-06** | Consultar Reportes (Global) | Administrador, Cliente, Desarrollador | **Must Have** | Acceso irrestricto para visualizar el histórico completo de incidencias del sistema. |
+| **CU-07** | Consultar Dashboard | Supervisor, Administrador, Cliente | **Should Have** | Visualización de métricas y gráficos de rendimiento financiero local. |
+| **CU-08** | Exportar Reporte PDF | Supervisor, Administrador, Cliente | **Should Have** | Generación de reportes PDF limpios basados en los filtros de acceso aplicados. |
 
 ---
 
-### 5.4 Diagrama de Casos de Uso en Mermaid
+### 5.3 Diagrama de Casos de Uso en Mermaid
 
 ```mermaid
 graph LR
-    %% Definición de Actores
+    %% Definición de Actores (Izquierda y Derecha para distribución limpia)
     subgraph Actores_Campo [Operación]
         Residente["👤 Ingeniero Residente"]
     end
@@ -102,11 +94,10 @@ graph LR
         CU02((CU-02: Registrar Incidencia))
         CU03((CU-03: Controlar Recursos))
         CU04((CU-04: Actualizar Multimedia))
-        CU05((CU-05: Consultar y Buscar Reportes Propio))
-        CU06((CU-06: Consultar y Buscar Reportes Global))
-        CU07((CU-07: Cerrar Sesión por Inactividad))
-        CU08((CU-08: Consultar Dashboard))
-        CU09((CU-09: Exportar Reporte PDF))
+        CU05((CU-05: Consultar Reportes Propio))
+        CU06((CU-06: Consultar Reportes Global))
+        CU07((CU-07: Consultar Dashboard))
+        CU08((CU-08: Exportar Reporte PDF))
     end
 
     %% Estilos MoSCoW
@@ -116,9 +107,8 @@ graph LR
     style CU04 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style CU05 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style CU06 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style CU07 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style CU07 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
     style CU08 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    style CU09 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
 
     %% Conexiones del Residente (Scope Local)
     Residente --> CU01
@@ -128,24 +118,20 @@ graph LR
     Residente --> CU05
     Residente --> CU07
     Residente --> CU08
-    Residente --> CU09
 
     %% Conexiones de Roles Globales (Scope Total)
     Admin --> CU01
     Admin --> CU06
     Admin --> CU07
     Admin --> CU08
-    Admin --> CU09
 
     Cliente --> CU01
     Cliente --> CU06
     Cliente --> CU07
     Cliente --> CU08
-    Cliente --> CU09
 
     Desarrollador --> CU01
     Desarrollador --> CU06
-    Desarrollador --> CU07
 
     %% Inclusiones <<include>> hacia autenticación
     CU02 -. "<<include>>" .-> CU01
@@ -155,4 +141,3 @@ graph LR
     CU06 -. "<<include>>" .-> CU01
     CU07 -. "<<include>>" .-> CU01
     CU08 -. "<<include>>" .-> CU01
-    CU09 -. "<<include>>" .-> CU01
