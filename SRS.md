@@ -53,7 +53,19 @@
 
 ---
 
-### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW & Roles Actualizado)
+### 5.2 Tabla de Casos de Uso (Mapeo MoSCoW)
+
+| ID | Caso de Uso (Acción) | Actor | Categoría MoSCoW | Requerimiento Asociado | Description |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **CU-01** | Iniciar Sesión | Supervisor | **Must Have** | RS-01 / RS-02 | El usuario ingresa sus credenciales de forma segura para obtener un token JWT y acceder al sistema. |
+| **CU-02** | Registrar Incidencia | Supervisor | **Must Have** | RF-01 / RXU-01 | Permite redactar la bitácora de la jornada y almacenar hasta 3 fotografías, con soporte offline si no hay red. |
+| **CU-03** | Controlar Recursos | Supervisor | **Must Have** | RF-02 | Permite registrar la asistencia de las cuadrillas de personal y el uso cronológico de la maquinaria pesada. |
+| **CU-04** | Consultar Dashboard | Supervisor | **Should Have** | RF-03 / RXU-03 | Despliega gráficos locales con el rendimiento financiero diario y el desglose de costos directos capturados. |
+| **CU-05** | Exportar Reporte PDF | Supervisor | **Should Have** | RF-04 / RF-05 | Compila la información de las bitácoras seleccionadas y genera de forma automatizada un archivo PDF limpio listo para firmas. |
+
+---
+
+### 5.3 Tabla de Casos de Uso (Mapeo MoSCoW & Roles Actualizado)
 
 | ID | Caso de Uso | Actores | Cat. MoSCoW | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
