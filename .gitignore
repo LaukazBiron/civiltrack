@@ -35,4 +35,11 @@ node_modules/
 # Archivos de sistema
 Thumbs.db
 
+# Cypress - Evidencia local y reportes temporales
+cypress/videos/
+cypress/screenshots/
+cypress/reports/
+.cypress-cache/
+mochawesome-report/
+
 CLAUDE.md
