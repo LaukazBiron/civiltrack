@@ -78,6 +78,7 @@ export function Login({ onLogin }) {
         <input
           type="text"
           placeholder="Correo electrónico"
+          data-testid="login-email"
           value={email}
           onChange={handleEmailChange}
           className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 py-3 px-4 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500"
@@ -85,15 +86,17 @@ export function Login({ onLogin }) {
         <input
           type="password"
           placeholder="Contraseña"
+          data-testid="login-password"
           value={password}
           onChange={handlePasswordChange}
           className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 py-3 px-4 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500"
         />
 
-        {error && <p className="text-red-600 dark:text-red-400 text-sm w-full">{error}</p>}
+        {error && <p data-testid="login-error" className="text-red-600 dark:text-red-400 text-sm w-full">{error}</p>}
 
         <button
           type="submit"
+          data-testid="login-submit"
           className="bg-blue-500 text-white py-3 rounded-xl w-full font-semibold min-h-[44px] hover:bg-blue-600 active:bg-blue-700 transition"
           disabled={loading}
         >

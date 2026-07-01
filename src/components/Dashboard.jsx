@@ -124,7 +124,7 @@ function ProjectCard({ project, onNavigate, onEdit, onDelete }) {
     : 'N/A';
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow duration-200">
+    <div data-testid={`project-card-${project.id_proyecto}`} className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow duration-200">
       {/* Franja de color superior según estado */}
       <div className={`h-1 w-full ${isActive ? 'bg-gradient-to-r from-blue-500 to-blue-300' : 'bg-gray-200 dark:bg-gray-600'}`} />
 
@@ -170,6 +170,7 @@ function ProjectCard({ project, onNavigate, onEdit, onDelete }) {
         <div className="flex items-center gap-1">
           {/* Editar */}
           <button
+            data-testid={`edit-project-${project.id_proyecto}`}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 active:bg-blue-200 dark:active:bg-blue-900/60 transition min-h-[36px]"
             onClick={(e) => { e.stopPropagation(); onEdit(); }}
             aria-label="Editar proyecto"
@@ -179,6 +180,7 @@ function ProjectCard({ project, onNavigate, onEdit, onDelete }) {
           </button>
           {/* Eliminar */}
           <button
+            data-testid={`delete-project-${project.id_proyecto}`}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-900/30 hover:bg-red-100 dark:hover:bg-red-900/50 active:bg-red-200 dark:active:bg-red-900/60 transition min-h-[36px]"
             onClick={(e) => { e.stopPropagation(); onDelete(); }}
             aria-label="Eliminar proyecto"
@@ -190,6 +192,7 @@ function ProjectCard({ project, onNavigate, onEdit, onDelete }) {
 
         {/* Ver detalle */}
         <button
+          data-testid={`view-project-${project.id_proyecto}`}
           className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition"
           onClick={onNavigate}
           aria-label="Ver bitácora"
@@ -336,6 +339,7 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
             CIVILTRACK
           </h1>
           <button
+            data-testid="open-new-project-desktop"
             onClick={() => setCreateModalOpen(true)}
             className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition min-h-[44px] text-sm whitespace-nowrap"
             disabled={saving}
@@ -354,7 +358,7 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
 
       {/* Toast */}
       {toast && (
-        <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full shadow-lg text-sm font-medium text-white animate-fade-in-out ${
+        <div data-testid="dashboard-toast" className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full shadow-lg text-sm font-medium text-white animate-fade-in-out ${
           toast.type === 'error' ? 'bg-red-500' : 'bg-emerald-500'
         }`}>
           {toast.message}
@@ -392,6 +396,7 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
                     { value: 'inactive', label: 'Inactivos' },
                   ].map(({ value, label }) => (
                     <button
+                      data-testid={`filter-${value}`}
                       key={value}
                       onClick={() => setFilter(value)}
                       className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${
@@ -442,6 +447,7 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
         style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
       >
         <button
+          data-testid="open-new-project-mobile"
           onClick={() => setCreateModalOpen(true)}
           className="pointer-events-auto bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold px-8 py-3.5 rounded-full shadow-xl transition min-h-[52px] text-base"
           disabled={saving}

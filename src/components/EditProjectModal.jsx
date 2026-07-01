@@ -70,6 +70,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
             <label className={labelClass}>Nombre</label>
             <input
               type="text"
+              data-testid="edit-project-name"
               value={name}
               onChange={e => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: '' })); }}
               className={errors.name ? inputError : inputNormal}
@@ -80,6 +81,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
           <div className="flex flex-col gap-1">
             <label className={labelClass}>Descripción</label>
             <textarea
+              data-testid="edit-project-description"
               value={description}
               onChange={e => setDescription(e.target.value)}
               className={`${inputNormal} resize-none`}
@@ -91,6 +93,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
             <label className={labelClass}>Ubicación</label>
             <input
               type="text"
+              data-testid="edit-project-ubicacion"
               value={ubicacion}
               onChange={e => { setUbicacion(e.target.value); if (errors.ubicacion) setErrors(p => ({ ...p, ubicacion: '' })); }}
               className={errors.ubicacion ? inputError : inputNormal}
@@ -102,6 +105,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
             <label className={labelClass}>Fecha de inicio</label>
             <input
               type="date"
+              data-testid="edit-project-fecha"
               value={fechaInicio}
               onChange={e => { setFechaInicio(e.target.value); if (errors.fechaInicio) setErrors(p => ({ ...p, fechaInicio: '' })); }}
               className={errors.fechaInicio ? inputError : inputNormal}
@@ -114,6 +118,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
             <label className={labelClass}>Estado del proyecto</label>
             <button
               type="button"
+              data-testid="edit-project-toggle-activo"
               className="flex items-center justify-between px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 min-h-[48px] hover:border-blue-300 dark:hover:border-blue-500 transition"
               onClick={() => setActivo(a => !a)}
               aria-label={activo ? 'Proyecto activo — click para desactivar' : 'Proyecto inactivo — click para activar'}
@@ -137,6 +142,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
           <div className="flex gap-3 pt-1">
             <button
               type="button"
+              data-testid="edit-project-cancel"
               className="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 active:bg-gray-300 text-gray-700 dark:text-gray-200 font-semibold min-h-[44px] transition"
               onClick={onClose}
               disabled={loading}
@@ -145,6 +151,7 @@ export function EditProjectModal({ isOpen, onClose, onSave, project, loading }) 
             </button>
             <button
               type="submit"
+              data-testid="edit-project-submit"
               className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold min-h-[44px] transition disabled:opacity-60 disabled:cursor-not-allowed"
               disabled={loading}
             >

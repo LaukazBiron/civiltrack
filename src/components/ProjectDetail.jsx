@@ -33,6 +33,7 @@ export default function ProjectDetail() {
   const [pdfLoading, setPdfLoading] = useState(false);
 
   const showToast = (message, type = 'success') => {
+    toast = { message, type };
     setToast({ message, type });
     setTimeout(() => setToast(null), 2800);
   };
@@ -141,6 +142,7 @@ export default function ProjectDetail() {
           </div>
           <button
             type="button"
+            data-testid="open-new-report-desktop"
             className="hidden md:flex items-center bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold px-5 py-2 rounded-full shadow hover:from-blue-700 hover:to-blue-500 active:scale-95 transition min-h-[40px] text-sm whitespace-nowrap shrink-0"
             onClick={() => setIsModalOpen(true)}
           >
@@ -182,6 +184,7 @@ export default function ProjectDetail() {
             <h3 className="text-lg font-bold text-blue-600 dark:text-blue-400">Reportes del proyecto</h3>
             <button
               type="button"
+              data-testid="download-pdf-btn"
               className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:from-green-600 hover:to-blue-600 transition text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-green-300"
               style={{ minWidth: 220 }}
               onClick={handleDownloadPDF}
@@ -215,7 +218,7 @@ export default function ProjectDetail() {
           ) : (
             <div className="relative flex flex-col gap-6">
               <div className="absolute left-[18px] top-3 bottom-3 w-0.5 bg-blue-100 dark:bg-blue-900/50 rounded-full z-0" />
-              <ul className="flex flex-col gap-6 z-10">
+              <ul data-testid="bitacora-list" className="flex flex-col gap-6 z-10">
                 {bitacora.map((report, idx) => {
                   let fecha = report.fecha_registro || report.fecha || report.fecha_creacion || report.createdAt;
                   let fechaFormateada = '';
@@ -227,7 +230,7 @@ export default function ProjectDetail() {
                     fechaFormateada = fechaFormateada.replace(/(^|\s)([a-záéíóúñ])/g, l => l.toUpperCase());
                   }
                   return (
-                    <li key={report.id || report.id_bitacora || idx} className="flex gap-4 group">
+                    <li key={report.id || report.id_bitacora || idx} data-testid={`bitacora-item-${report.id || report.id_bitacora}`} className="flex gap-4 group">
                       <div className="flex flex-col items-center pt-2 shrink-0">
                         <div className="w-[14px] h-[14px] bg-blue-500 rounded-full border-2 border-white dark:border-gray-900 shadow-md z-10 group-hover:scale-110 transition" />
                       </div>
@@ -286,6 +289,7 @@ export default function ProjectDetail() {
       >
         <button
           type="button"
+          data-testid="back-btn"
           className="flex items-center justify-center gap-2 flex-1 py-3 rounded-full bg-white dark:bg-gray-800 border border-blue-200 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-semibold shadow-sm hover:bg-blue-50 dark:hover:bg-gray-700 active:scale-95 transition min-h-[52px] text-base"
           onClick={() => navigate(-1)}
         >
@@ -296,6 +300,7 @@ export default function ProjectDetail() {
         </button>
         <button
           type="button"
+          data-testid="open-new-report-mobile"
           className="flex items-center justify-center flex-[2] py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold shadow-lg hover:from-blue-700 hover:to-blue-500 active:scale-95 transition min-h-[52px] text-base"
           onClick={() => setIsModalOpen(true)}
         >
