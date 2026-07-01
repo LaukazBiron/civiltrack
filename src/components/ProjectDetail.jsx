@@ -33,7 +33,6 @@ export default function ProjectDetail() {
   const [pdfLoading, setPdfLoading] = useState(false);
 
   const showToast = (message, type = 'success') => {
-    toast = { message, type };
     setToast({ message, type });
     setTimeout(() => setToast(null), 2800);
   };

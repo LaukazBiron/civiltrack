@@ -58,9 +58,11 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
       setDescription('');
       clearFile();
       onClose();
-    } catch {
-      setError('No se pudo enviar el reporte. Revisa tu conexión e intenta de nuevo.');
-    } finally {
+      } catch (err) {
+        console.error('Error al crear reporte:', err);
+        const msg = err.response?.data?.error || err.response?.data?.mensaje;
+        setError(msg || 'No se pudo enviar el reporte. Revisa tu conexión e intenta de nuevo.');
+      } finally {
       setLoading(false);
     }
   };

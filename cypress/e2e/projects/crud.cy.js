@@ -1,13 +1,10 @@
 describe('CRUD de Proyectos/Obras', () => {
   beforeEach(() => {
     cy.fixture('usuario').then((user) => {
-    cy.visit('/login');
-    cy.get('[data-testid="login-email"]').type(user.correo);
-    cy.get('[data-testid="login-password"]').type(user.password);
-    cy.get('[data-testid="login-submit"]').click();
-    cy.url().should('include', '/dashboard');
+    cy.loginUI(user.correo, user.password);
+    cy.visit('/dashboard');
+    });
   });
-});
 
   it('crea un nuevo proyecto correctamente', () => {
     cy.get('[data-testid="open-new-project-desktop"]').click();
