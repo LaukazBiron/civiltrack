@@ -48,6 +48,7 @@ export function DeleteConfirmModal({ isOpen, onClose, onConfirm, projectName, lo
             className="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 active:bg-gray-300 text-gray-700 dark:text-gray-200 font-semibold min-h-[44px] transition"
             onClick={onClose}
             disabled={loading}
+            data-testid="delete-cancel"
           >
             Cancelar
           </button>
@@ -55,6 +56,7 @@ export function DeleteConfirmModal({ isOpen, onClose, onConfirm, projectName, lo
             className="flex-1 py-3 rounded-xl bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold min-h-[44px] transition disabled:opacity-50"
             onClick={onConfirm}
             disabled={loading}
+            data-testid="delete-confirm"
           >
             {loading ? 'Eliminando...' : 'Eliminar'}
           </button>

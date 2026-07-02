@@ -58,9 +58,11 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
       setDescription('');
       clearFile();
       onClose();
-    } catch {
-      setError('No se pudo enviar el reporte. Revisa tu conexión e intenta de nuevo.');
-    } finally {
+      } catch (err) {
+        console.error('Error al crear reporte:', err);
+        const msg = err.response?.data?.error || err.response?.data?.mensaje;
+        setError(msg || 'No se pudo enviar el reporte. Revisa tu conexión e intenta de nuevo.');
+      } finally {
       setLoading(false);
     }
   };
@@ -104,6 +106,7 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
             <label className={labelClass}>Título</label>
             <input
               type="text"
+              data-testid="new-report-title"
               placeholder="Ej: Colado de losa nivel 3"
               value={title}
               onChange={e => { setTitle(e.target.value); if (error) setError(''); }}
@@ -115,6 +118,7 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
           <div className="flex flex-col gap-1">
             <label className={labelClass}>Descripción</label>
             <textarea
+              data-testid="new-report-description"
               placeholder="Describe el avance, observaciones o incidencias..."
               value={description}
               onChange={e => { setDescription(e.target.value); if (error) setError(''); }}
@@ -141,6 +145,7 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
                 <div className="absolute inset-x-0 bottom-0 flex gap-2 p-2.5 bg-gradient-to-t from-black/60 to-transparent">
                   <button
                     type="button"
+                    data-testid="new-report-remove-photo"
                     className="flex-1 py-2 rounded-lg bg-white/20 backdrop-blur-sm text-white text-xs font-semibold hover:bg-white/30 active:bg-white/40 transition"
                     onClick={clearFile}
                   >
@@ -148,7 +153,7 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
                   </button>
                   <label className="flex-1 py-2 rounded-lg bg-blue-600/80 backdrop-blur-sm text-white text-xs font-semibold text-center cursor-pointer hover:bg-blue-600 active:bg-blue-700 transition">
                     Cambiar
-                    <input type="file" accept="image/*" capture="environment" onChange={handleFileChange} className="hidden" />
+                    <input type="file" accept="image/*" capture="environment" onChange={handleFileChange} className="hidden" data-testid="new-report-file" />
                   </label>
                 </div>
               </div>
@@ -163,6 +168,7 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
                   capture="environment"
                   onChange={handleFileChange}
                   className="hidden"
+                  data-testid="new-report-file"
                 />
               </label>
             )}
@@ -171,12 +177,13 @@ export default function NewReportModal({ isOpen, onClose, projectId, onReportCre
           {/* Error inline */}
           {error && (
             <div className="px-4 py-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl">
-              <p className="text-red-500 dark:text-red-400 text-sm">{error}</p>
+              <p className="text-red-500 dark:text-red-400 text-sm" data-testid="new-report-error" >{error}</p>
             </div>
           )}
 
           <button
             type="submit"
+            data-testid="new-report-submit"
             className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold min-h-[52px] transition disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={loading}
           >
