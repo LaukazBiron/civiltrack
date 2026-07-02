@@ -310,7 +310,7 @@ export default function ProjectDetail() {
       <NewReportModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        projectId={project.id_proyecto || project.id}
+        projectId={project?.id_proyecto || project?.id || id}
         onReportCreated={handleReportCreated}
       />
     </div>
