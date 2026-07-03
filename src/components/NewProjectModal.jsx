@@ -50,6 +50,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
     <div
       className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40"
       onClick={onClose}
+      data-testid="new-project-modal"
     >
       <div
         className="w-full md:max-w-md bg-white dark:bg-gray-800 rounded-t-3xl md:rounded-2xl shadow-2xl flex flex-col animate-slide-up md:animate-none overflow-hidden"
@@ -80,6 +81,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
             <label className={labelClass}>Nombre del proyecto</label>
             <input
               type="text"
+              data-testid="new-project-name"
               placeholder="Ej: Torre Residencial Norte"
               value={name}
               onChange={e => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: '' })); }}
@@ -91,6 +93,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
           <div className="flex flex-col gap-1">
             <label className={labelClass}>Descripción <span className="normal-case font-normal text-gray-400 dark:text-gray-500">(opcional)</span></label>
             <textarea
+              data-testid="new-project-description"
               placeholder="Describe el alcance del proyecto..."
               value={description}
               onChange={e => setDescription(e.target.value)}
@@ -103,6 +106,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
             <label className={labelClass}>Ubicación</label>
             <input
               type="text"
+              data-testid="new-project-ubicacion"
               placeholder="Ej: Av. Insurgentes 1234, CDMX"
               value={ubicacion}
               onChange={e => { setUbicacion(e.target.value); if (errors.ubicacion) setErrors(p => ({ ...p, ubicacion: '' })); }}
@@ -115,6 +119,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
             <label className={labelClass}>Fecha de inicio</label>
             <input
               type="date"
+              data-testid="new-project-fecha"
               value={fechaInicio}
               onChange={e => { setFechaInicio(e.target.value); if (errors.fechaInicio) setErrors(p => ({ ...p, fechaInicio: '' })); }}
               className={errors.fechaInicio ? inputError : inputNormal}
@@ -125,6 +130,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
           <div className="flex gap-3 pt-1">
             <button
               type="button"
+              data-testid="new-project-cancel"
               className="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 active:bg-gray-300 text-gray-700 dark:text-gray-200 font-semibold min-h-[44px] transition"
               onClick={onClose}
               disabled={submitting}
@@ -133,6 +139,7 @@ export function NewProjectModal({ isOpen, onClose, onCreate }) {
             </button>
             <button
               type="submit"
+              data-testid="new-project-submit"
               className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold min-h-[44px] transition disabled:opacity-60 disabled:cursor-not-allowed"
               disabled={submitting}
             >

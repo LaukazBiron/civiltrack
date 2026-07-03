@@ -41,5 +41,6 @@ cypress/screenshots/
 cypress/reports/
 .cypress-cache/
 mochawesome-report/
+cypress/fixtures/
 
 CLAUDE.md
