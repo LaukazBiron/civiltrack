@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Search } from 'lucide-react';
 import { fetchProjectWithBitacora } from '../api/project.api.js';
 import { getBitacoraPdfUrl } from '../config/api.js';
 import NewReportModal from './NewReportModal';
@@ -31,6 +32,7 @@ export default function ProjectDetail() {
   const [error, setError] = useState('');
   const [toast, setToast] = useState(null);
   const [pdfLoading, setPdfLoading] = useState(false);
+  const [reportSearch, setReportSearch] = useState(''); // 👈 nuevo: búsqueda de reportes
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
@@ -117,6 +119,17 @@ export default function ProjectDetail() {
     );
   }
 
+  // Filtrado de reportes por texto de búsqueda (título, descripción o autor)
+  const term = reportSearch.trim().toLowerCase();
+  const filteredBitacora = term === ''
+    ? bitacora
+    : bitacora.filter(report => {
+        const titulo = (report.titulo || report.titulo_reporte || report.title || '').toLowerCase();
+        const descripcion = (report.descripcion || report.descripcion_reporte || report.description || '').toLowerCase();
+        const autor = (report.autor || report.usuario || report.creador || report.user || '').toLowerCase();
+        return titulo.includes(term) || descripcion.includes(term) || autor.includes(term);
+      });
+
   return (
     <div className="min-h-dvh bg-blue-50 dark:bg-gray-900 flex flex-col">
 
@@ -151,7 +164,7 @@ export default function ProjectDetail() {
       </header>
 
       {toast && (
-        <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full shadow-lg text-sm font-medium text-white animate-fade-in-out ${
+        <div data-testid="project-detail-toast" className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full shadow-lg text-sm font-medium text-white animate-fade-in-out ${
           toast.type === 'error' ? 'bg-red-500' : 'bg-emerald-500'
         }`}>
           {toast.message}
@@ -198,6 +211,21 @@ export default function ProjectDetail() {
             </p>
           )}
 
+          {/* Barra de búsqueda de reportes — solo tiene sentido mostrarla si ya hay reportes cargados */}
+          {!loading && !error && bitacora.length > 0 && (
+            <div className="relative w-full mb-5">
+              <Search size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+              <input
+                type="text"
+                data-testid="report-search"
+                placeholder="Buscar reporte por título, descripción o autor..."
+                value={reportSearch}
+                onChange={e => setReportSearch(e.target.value)}
+                className="w-full border border-gray-300 dark:border-gray-600 py-2.5 pl-10 pr-4 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500 transition text-sm"
+              />
+            </div>
+          )}
+
           {loading ? (
             <div className="relative flex flex-col gap-6">
               <div className="absolute left-[18px] top-3 bottom-3 w-0.5 bg-blue-100 dark:bg-blue-900/50 rounded-full z-0" />
@@ -214,11 +242,17 @@ export default function ProjectDetail() {
                 Aún no hay reportes en esta obra.<br />¡Sé el primero en documentar el avance!
               </p>
             </div>
+          ) : filteredBitacora.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-16 gap-2">
+              <p className="text-gray-400 dark:text-gray-500 text-sm text-center">
+                No se encontraron reportes para "{reportSearch.trim()}".
+              </p>
+            </div>
           ) : (
             <div className="relative flex flex-col gap-6">
               <div className="absolute left-[18px] top-3 bottom-3 w-0.5 bg-blue-100 dark:bg-blue-900/50 rounded-full z-0" />
               <ul data-testid="bitacora-list" className="flex flex-col gap-6 z-10">
-                {bitacora.map((report, idx) => {
+                {filteredBitacora.map((report, idx) => {
                   let fecha = report.fecha_registro || report.fecha || report.fecha_creacion || report.createdAt;
                   let fechaFormateada = '';
                   if (fecha) {
@@ -229,7 +263,7 @@ export default function ProjectDetail() {
                     fechaFormateada = fechaFormateada.replace(/(^|\s)([a-záéíóúñ])/g, l => l.toUpperCase());
                   }
                   return (
-                    <li key={report.id || report.id_bitacora || idx} data-testid={`bitacora-item-${report.id || report.id_bitacora}`} className="flex gap-4 group">
+                    <li key={report.id_bitacora || report.id || idx} data-testid={`bitacora-item-${report.id_bitacora || report.id}`} className="flex gap-4 group">
                       <div className="flex flex-col items-center pt-2 shrink-0">
                         <div className="w-[14px] h-[14px] bg-blue-500 rounded-full border-2 border-white dark:border-gray-900 shadow-md z-10 group-hover:scale-110 transition" />
                       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Menu, X, Pencil, Trash2, MapPin, Calendar, CheckCircle, Clock, ChevronRight, Sun, Moon } from 'lucide-react';
+import { LogOut, Menu, X, Pencil, Trash2, MapPin, Calendar, CheckCircle, Clock, ChevronRight, Sun, Moon, Search } from 'lucide-react';
 import { NewProjectModal } from './NewProjectModal.jsx';
 import { EditProjectModal } from './EditProjectModal.jsx';
 import { DeleteConfirmModal } from './DeleteConfirmModal.jsx';
@@ -220,6 +220,7 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
   const [deleting, setDeleting] = useState(false);
   const [toast, setToast] = useState(null); // { message, type: 'success'|'error' }
   const [filter, setFilter] = useState('all'); // 'all' | 'active' | 'inactive'
+  const [searchTerm, setSearchTerm] = useState(''); // 👈 nuevo: búsqueda de proyectos
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
@@ -381,12 +382,33 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
             <p className="text-gray-400 dark:text-gray-500 text-sm text-center">Aún no hay proyectos.<br />Crea el primero.</p>
           </div>
         ) : (() => {
-          const filtered = projects.filter(p =>
-            filter === 'active' ? !!p.activo :
-            filter === 'inactive' ? !p.activo : true
-          );
+          const filtered = projects.filter(p => {
+            const matchesStatus =
+              filter === 'active' ? !!p.activo :
+              filter === 'inactive' ? !p.activo : true;
+
+            const term = searchTerm.trim().toLowerCase();
+            const matchesSearch = term === '' ||
+              p.nombre?.toLowerCase().includes(term) ||
+              p.ubicacion?.toLowerCase().includes(term);
+
+            return matchesStatus && matchesSearch;
+          });
           return (
             <>
+              {/* Barra de búsqueda */}
+              <div className="relative w-full">
+                <Search size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+                <input
+                  type="text"
+                  data-testid="dashboard-search"
+                  placeholder="Buscar proyecto por nombre o ubicación..."
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  className="w-full border border-gray-300 dark:border-gray-600 py-2.5 pl-10 pr-4 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500 transition text-sm"
+                />
+              </div>
+
               {/* Barra de filtros */}
               <div className="flex items-center justify-between">
                 <div className="flex gap-2">
@@ -417,7 +439,9 @@ export function Dashboard({ user, onLogout, darkMode, toggleDarkMode }) {
               {filtered.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16 gap-2">
                   <p className="text-gray-400 dark:text-gray-500 text-sm text-center">
-                    No hay proyectos {filter === 'active' ? 'activos' : 'inactivos'}.
+                    {searchTerm.trim() !== ''
+                      ? `No se encontraron proyectos para "${searchTerm.trim()}".`
+                      : `No hay proyectos ${filter === 'active' ? 'activos' : 'inactivos'}.`}
                   </p>
                 </div>
               ) : (
